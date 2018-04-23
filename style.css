@@ -1,0 +1,11 @@
+html{
+    background-color: #232c3a;
+}
+#header{
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
