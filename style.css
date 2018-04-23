@@ -9,3 +9,20 @@ html{
     text-align: center;
     color: white;
 }
+#link{
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+
+a:link {
+    color: white;
+}
+
+/* visited link */
+a:visited {
+    color: lightgrey;
+}
