@@ -1,13 +1,29 @@
 html{
-    background-color: #232c3a;
+padding: 0;
+margin: 0;
+}
+body{
+  padding: 0;
+  margin: 0;
+}
+hr{
+  height: 12px;
+  border: 0;
+  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+  color: #232c3a;
+  margin-top: 0;
 }
 #header{
     margin: auto;
-    width: 90%;
+    width: 100%;
     padding: 10px;
     font-size: 50px;
     text-align: center;
     color: white;
+    background-color: #232c3a;
+    background: linear-gradient(#232c3a 0%, #232c3a 75%, #394559 100%);
+    font-family: sans-serif;
+
 }
 #link{
     margin: auto;
@@ -15,14 +31,14 @@ html{
     padding: 10px;
     font-size: 30px;
     text-align: center;
-    color: white;
+    /* color: white; */
 }
 
 a:link {
-    color: white;
+    /* color: white; */
 }
 
 /* visited link */
 a:visited {
-    color: lightgrey;
+    /* color: lightgrey; */
 }
