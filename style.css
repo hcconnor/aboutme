@@ -7,7 +7,27 @@ html{
 
 }
 body{
-  margin-top: 50px;
+  overflow-x: hidden;
+  background-color: lime;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8B0000;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8B0000;
 }
 #header{
     position: fixed;
@@ -32,57 +52,116 @@ a:visited {
     color: white;
 }
 a:hover{
-    color: white;
-    text-decoration: line-through red;
+    color: #8B0000;
+    text-decoration: line-through black;
 }
 
-.introContainer{
-    height: 100%;
-    background-color: black;
+.wrapper{
+    height: 100vh;
+    perspective: 3px;
+    width: 100%;
 }
 
 .intro{
-    width: 100%;
-    background: black;
     color: white;
+    position: relative;
+    height: 95vh;
     font-family: 'Libre Franklin', sans-serif;
-    font-weight: 100;
 }
+.parallax{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* Move the pseudo-element back away from the camera,
+    * then scale it back up to fill the viewport.
+    * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#para1{
+    background-image: url("images/placeholderBuilding.png");
+    background-color: black;
+    transform: translateZ(-1px) scale(1.5);
+    /* Force the background image to fill the whole element. */
+    background-size: 100%;
+    /* Keep the image from overlapping sibling elements. */
+    z-index: -1;
+}
+
+.rain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.rain.back-row {
+  bottom: 60px;
+}
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 15px;
+  height: 120px;
+  pointer-events: none;
+  animation: drop 0.5s linear infinite;
+}
+@keyframes drop {
+  0% {
+    transform: translateY(0vh);
+  }
+  75% {
+    transform: translateY(90vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+.stem {
+  width: 8px;
+  height: 60%;
+  margin-left: 7px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+  animation: stem 0.5s linear infinite;
+}
+
+@keyframes stem {
+  0% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  75% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 #name1{
-    padding-left: 35%;
-    height: 20%;
-    font-size: 6em;
-    font-weight: 100;
+    text-align: left;
+    padding-left: 10vh;
+    padding-top: 10vh;
+    font-size: 5em;
 }
 #name2{
-    padding-left: 40%;
-    height: 33%;
+    text-align: center;
     font-size: 6em;
 }
 #nameSub{
-    height: 33%;
-    text-align: center;
+    text-align: left;
+    padding-left: 10vh;
+    color: white;
 }
 
 .topContainer{
-    display: block;
     position: relative;
-    width: 100%;
-    height: 800px;
-    min-height: 100%;
-    background: #070b34;
-    margin: 0 auto;
-    padding: 10px;
-}
-.main{
-    width: 50%;
-    height: 800px;
-    background: red;
-    float: left;
-}
-.buildings{
-    margin-left: 15%;
-    float: right;
-    height: 800px;
-    background: black;
+    height: 100vh;
+    background: white;
 }
