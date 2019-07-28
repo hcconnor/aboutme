@@ -14,7 +14,6 @@ body{
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: black;
@@ -29,7 +28,12 @@ body{
 ::-webkit-scrollbar-thumb:hover {
   background: #8B0000;
 }
-#header{
+#topAnc{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.header{
     position: fixed;
     margin: auto;
     width: 100%;
@@ -42,22 +46,22 @@ body{
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
 }
-a:link {
+div.header a:link {
     color: white;
     text-decoration: none;
 }
 
 /* visited link */
-a:visited {
+div.header a:visited {
     color: white;
 }
-a:hover{
+div.header a:hover{
     color: #8B0000;
     text-decoration: line-through black;
 }
 
 .wrapper{
-    height: 100vh;
+    height: 140vh;
     perspective: 3px;
     width: 100%;
 }
@@ -66,7 +70,7 @@ a:hover{
     color: white;
     position: relative;
     height: 95vh;
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Oswald', sans-serif;
 }
 .parallax{
     position: absolute;
@@ -86,7 +90,7 @@ a:hover{
     background-color: black;
     transform: translateZ(-1px) scale(1.5);
     /* Force the background image to fill the whole element. */
-    background-size: 100%;
+    background-size: cover;
     /* Keep the image from overlapping sibling elements. */
     z-index: -1;
 }
@@ -96,7 +100,7 @@ a:hover{
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 0;
 }
 
 .rain.back-row {
@@ -140,28 +144,210 @@ a:hover{
     opacity: .8;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
 #name1{
     text-align: left;
-    padding-left: 10vh;
+    padding-left: 5vw;
     padding-top: 10vh;
+    margin-bottom: 5px;
     font-size: 5em;
 }
 #name2{
-    text-align: center;
-    font-size: 6em;
+    text-align: left;
+    margin-top: 5px;
+    padding-left: 12vw;
+    font-size: 5em;
+    margin-bottom: 5px;
 }
 #nameSub{
     text-align: left;
-    padding-left: 10vh;
+    padding-left: 5vw;
+    color: white;
+}
+
+
+.SectionTitle{
+    color:white;
+    background-color: transparent;
+    font-size: 100px;
+    height: 40px;
+    font-family: 'VT323', monospace;
+    padding-left: 10vw;
+
+}
+.projectsContainer{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+.projectsContainer > div {
+    background-color: green;
+    width: 30vw;
+    height: 55vh;
+    margin-top: 20vh;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 20px;
+    position: relative;
+}
+div.projectsContainer a:link{
+    background-color: green;
+    color: white;
+    width: 30vw;
+    height: 55vh;
+    margin-top: 20vh;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 20px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.projectButton{
+
+}
+
+.colorOverlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(76, 226, 229, 0.48);
+}
+
+#CnCProject{
+    background-image: url("images/cncthumb.jpg");
+}
+#Solus{
+    background-image: url("images/solusThumb.png");
+}
+
+.projectButton{
+}
+#projectTitle{
+    padding-top: 30px;
+    font-size: 70px;
+    font-family: 'Libre Barcode 39 Text', cursive;
+}
+#projectDescription{
+    position: absolute;
+    bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+}
+.tooltip{
+    bottom: 0;
+    color:white;
+    text-decoration: none;
+    font-family: Helvetica;
+}
+a:link{
+    text-decoration: none;
+}
+a:link .tooltip{
+    visibility: hidden;
+    color: white;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+a:link:hover .tooltip{
+    visibility: visible;
+}
+a:link:visited{
     color: white;
 }
 
 .topContainer{
     position: relative;
     height: 100vh;
-    background: white;
+    width: 100%;
+    background-color: black;
+    color: white;
 }
+.bio{
+    /* background-color: rgba(96, 185, 240, 0.8); */
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 29%, rgba(0,212,255,1) 100%);
+    float: left;
+    margin-left: 15vw;
+    height: 60vh;
+    width: 30vw;
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+    padding-top: 75px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.myPic{
+    background-color: white;
+    float: left;
+    height: 60vh;
+    width: 30vw;
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+    padding-top: 75px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.bio{
+    font-size: 25px;
+    padding-left: 80px;
+    font-family: 'Oswald', sans-serif;
+    line-height: 200%;
+}
+#email{
+    font-size: 60px;
+    color: white;
+    font-family: 'VT323', monospace;
+}
+#email:link:hover {
+    background-color: red;
+}
+#bioLink{
+    color: white;
+    text-decoration: underline;
+}
+.fa{
+    padding: 20px;
+    margin-left: 10px;
+    font-size: 0px;
+    width: 3px;
+    height: 3px;
+    text-align: center;
+    text-decoration: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.fa:hover{
+    opacity: 0.7;
+}
+.fa-Linkedin{
+    background-image: url("./images/linkedinWhite.png");
+}
+.fa-github{
+    background-image: url("./images/GitHub-Mark-Light-32px.png");
+}
+.headercontact{
+    display: inline;
+    margin-left: 70px;
+}
+/* #biolink:hover {
+    color:red;
+} */
