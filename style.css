@@ -40,19 +40,19 @@ body{
     top: 0;
     left: 0;
 }
-.header{
+/* .header{
     position: fixed;
     margin: 0px;
     width: 100%;
     padding: 10px;
     font-size: 30px;
-    text-align: center;
+    text-align: center; */
     /* color: white; */
-    background-color: black;
+    /* background-color: black;
     font-family: 'Libre Barcode 39 Text', cursive;
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-}
+    z-index: 1; Stay on top */
+    /* top: 0; Stay at the top */
+/* } */
 div.header a:link {
     color: white;
     text-decoration: none;
@@ -185,22 +185,24 @@ div.header a:hover{
     background-color: transparent;
     font-size: 100px;
     height: 40px;
-    font-family: 'VT323', monospace;
     padding-left: 10vw;
-
+    margin-bottom: 150px;
+    font-family: 'Oswald', sans-serif;
 }
 .projectsContainer{
-    height: 110vh;
+    height: 60vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* background-color: black; */
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-top: 20vh;
-    
+    background-color: green; 
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 30vh;
+    padding-bottom: 30vh;
+    overflow: hidden;
+    justify-content: left;
 }
-.projectsContainer > div {
+/* .projectsContainer > div {
     background-color: green;
     width: 30vw;
     height: 55vh;
@@ -211,8 +213,8 @@ div.header a:hover{
     line-height: 75px;
     font-size: 20px;
     position: relative;
-}
-div.projectsContainer a:link{
+} */
+/* div.projectsContainer a:link{
     background-color: green;
     color: white;
     width: 100%;
@@ -228,10 +230,10 @@ div.projectsContainer a:link{
     background-repeat: no-repeat;
 
     /* position: relative; */
-}
+} */
 
 .startLeft{
-    transform: translateX(-100%);
+    transform: translateX(0%);
 }
 .startRight{
     transform: translateX(100%);
@@ -251,41 +253,39 @@ div.projectsContainer a:link{
 }
 
 .colorOverlay{
-    width: 100%;
+    width: 100vw;
     height: 100%;
-    position: absolute;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
+    color: white;
 }
-#cncOverlay{
-
-}
-#planterOverlay{
-
-}
-#solusOverlay{
-
-}
-#CnCProject{
-    background-image: url("images/cncthumb.jpg");
-}
-#Solus{
-    background-image: url("images/solusThumb.png");
+#videoBG{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
 }
 
-.projectButton{
-}
 #projectTitle{
-    padding-top: 30px;
-    font-size: 70px;
-    font-family: 'Libre Barcode 39 Text', cursive;
+    padding-top: 80vh;
+    font-size: 3vw;
+    font-family: 'Oswald', sans-serif;
 }
 #projectDescription{
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1vw;
+    margin-top: 30px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 30px;
+    max-width: 50%;
 }
 .tooltip{
     bottom: 0;
