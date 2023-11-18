@@ -15,7 +15,7 @@ p{
     margin: auto 0;
 }
 body{
-    position: relative;
+    /* position: relative; */
 }
 /* width */
 ::-webkit-scrollbar {
