@@ -201,7 +201,7 @@ div.header a:hover{
     padding-right: 5%;
     padding-top: 30vh;
     padding-bottom: 30vh;
-    /* overflow: hidden; */
+    overflow: hidden;
     justify-content: left;
 }
 /* .projectsContainer > div {
