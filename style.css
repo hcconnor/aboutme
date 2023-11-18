@@ -75,9 +75,7 @@ div.header a:hover{
 
 .intro{
     /* background-color: black; */
-    position: absolute;
     color: white;
-    position: relative;
     height: 100vh;
     width: 100vw;
     font-family: 'Oswald', sans-serif;
