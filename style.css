@@ -1,10 +1,11 @@
 html, body{
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
 }
+
 html{
     min-height: 100%;
-    overflow-x: hidden;
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 80%, rgba(131,0,0,1) 100%);
     background-size: cover;
@@ -14,8 +15,7 @@ p{
     margin: auto 0;
 }
 body{
-
-
+    position: relative;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -75,9 +75,11 @@ div.header a:hover{
 
 .intro{
     /* background-color: black; */
+    position: absolute;
     color: white;
     position: relative;
     height: 100vh;
+    width: 100vw;
     font-family: 'Oswald', sans-serif;
 }
 /* .parallax{
@@ -161,20 +163,20 @@ div.header a:hover{
     padding-left: 5vw;
     padding-top: 10vh;
     margin-bottom: 5px;
-    font-size: 5em;
+    font-size: 10vmin;
 }
 #name2{
     text-align: left;
     margin-top: 5px;
     padding-left: 12vw;
-    font-size: 5em;
+    font-size: 10vmin;
     margin-bottom: 5px;
 }
 #nameSub{
     margin-left: 30px;
     text-align: left;
     padding-left: 3vw;
-    font-size: 2em;
+    font-size: 5vmin;
     color: white;
     display: flex;
 }
@@ -366,8 +368,8 @@ a:link:visited{
     padding: 20px;
     margin-left: 10px;
     font-size: 0px;
-    width: 3px;
-    height: 3px;
+    width: 5vmin;
+    height: 5vmin;
     text-align: center;
     text-decoration: none;
     background-position: center;
