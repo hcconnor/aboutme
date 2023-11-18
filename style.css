@@ -163,20 +163,20 @@ div.header a:hover{
     padding-left: 5vw;
     padding-top: 10vh;
     margin-bottom: 5px;
-    font-size: 10vmin;
+    font-size: 10vmax;
 }
 #name2{
     text-align: left;
     margin-top: 5px;
     padding-left: 12vw;
-    font-size: 10vmin;
+    font-size: 10vmax;
     margin-bottom: 5px;
 }
 #nameSub{
     margin-left: 30px;
     text-align: left;
     padding-left: 3vw;
-    font-size: 5vmin;
+    font-size: 5vmax;
     color: white;
     display: flex;
 }
@@ -232,17 +232,19 @@ div.header a:hover{
     background-repeat: no-repeat;
 
     /* position: relative; */
-} */
+/* } */ 
 
 .startLeft{
-    transform: translateX(0%);
+    transform: translateX(-100%);
 }
+
+
 .startRight{
     transform: translateX(100%);
 }
 
 .slideIn{
-    animation: slide-in 0.5s forwards;
+    animation: slide-in .75s forwards;
 }
 
 
@@ -274,15 +276,15 @@ div.header a:hover{
 }
 
 #projectTitle{
-    padding-top: 80vh;
-    font-size: 3vw;
+    padding-top: 90vh;
+    font-size: 4vmax;
     font-family: 'Oswald', sans-serif;
 }
 #projectDescription{
     /* position: absolute; */
     bottom: 0;
     font-family: 'Oswald', sans-serif;
-    font-size: 1vw;
+    font-size: 2vmax;
     margin-top: 30px;
     padding-left: 10px;
     padding-right: 10px;
@@ -367,10 +369,13 @@ a:link:visited{
 .fa{
     padding: 20px;
     margin-left: 10px;
+    margin-right: 2vmin;
+    margin-top: 2vmin;
     font-size: 0px;
+    
     width: 5vmin;
     height: 5vmin;
-    text-align: center;
+    text-align: top;
     text-decoration: none;
     background-position: center;
     background-size: cover;
@@ -384,6 +389,7 @@ a:link:visited{
 }
 .fa-x{
     background-image: url("./images/x-social-media-white-icon.webp");
+    margin-right: 7vmin;
 }
 .headercontact{
     display: inline-flex;
