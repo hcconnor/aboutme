@@ -214,10 +214,10 @@ div.row a:hover {
 .SectionTitle{
     color:white;
     background-color: transparent;
-    font-size: 100px;
+    font-size: 8vh;
     height: 40px;
     padding-left: 10vw;
-    margin-bottom: 150px;
+    padding-bottom: 20vh;
     font-family: 'Oswald', sans-serif;
 }
 
@@ -287,7 +287,7 @@ div.row a:hover {
 }
 .colorOverlay{
     width: 100vw;
-    height: 50vh;
+    height: 50vmax;
     position: absolute;
     top: 0;
     left: 0;
@@ -296,9 +296,17 @@ div.row a:hover {
 #videoBG{
     position: absolute;
     right: 0;
-    bottom: 0;
-    width: 40vw;
+    top: 30vh;
+    width: 30vw;
     height: 30vh;
+}
+
+#imgBG{
+    position: absolute;
+    right: 0;
+    top: 10vmax;
+    width: 30vw;
+    height: auto;
 }
 
 #projectTitle{
@@ -383,7 +391,7 @@ a:link:visited{
 #email{
     font-size: 60px;
     color: white;
-    font-family: 'VT323', monospace;
+    font-family: 'Oswald', sans-serif;
 }
 #email:link:hover {
     background-color: red;
