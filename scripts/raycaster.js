@@ -17,9 +17,11 @@ Controls.prototype.onTouch = function (e) {
     this.onTouchEnd(e);
     e.preventDefault();
     e.stopPropagation();
-    if (t.pageY < window.innerHeight * 0.5) this.onKey(true, { keyCode: 38 });
-    else if (t.pageX < window.innerWidth * 0.5) this.onKey(true, { keyCode: 37 });
-    else if (t.pageY > window.innerWidth * 0.5) this.onKey(true, { keyCode: 39 });
+    if (t.pageY < window.innerHeight * 0.7) this.onKey(true, { keyCode: 32 });
+    else if (t.pageY < window.innerHeight * 0.8) this.onKey(true, { keyCode: 38 })
+    else if (t.pageX < window.innerWidth * 0.5 && t.pageY < window.innerHeight * 0.9) this.onKey(true, { keyCode: 37 });
+    else if (t.pageY > window.innerWidth * 0.5 && t.pageY < window.innerHeight * 0.9) this.onKey(true, { keyCode: 39 });
+    else this.onKey(true, { keyCode: 40 });
 };
 
 Controls.prototype.onTouchEnd = function (e) {
@@ -180,6 +182,18 @@ Camera.prototype.displayHelp = function (image)
 {
     this.ctx.drawImage(image.image, this.canvas.width / 2 - image.image.width / 2, this.canvas.height / 2 - image.image.height / 2)
 }
+Camera.prototype.showMobileControls = function()
+{
+    console.log("showing Mobile Controls");
+    this.ctx.fillStyle = "green";
+    this.ctx.fillRect(0, this.canvas.height * 0.7, this.canvas.width, this.canvas.height * .1);
+    this.ctx.fillStyle = "yellow";
+    this.ctx.fillRect(0, this.canvas.height * 0.8, this.canvas.width *.5, this.canvas.height * .1);
+    this.ctx.fillStyle = "blue";
+    this.ctx.fillRect(this.canvas.width * .5, this.canvas.height * 0.8, this.canvas.width * .5, this.canvas.height * .1);
+    this.ctx.fillStyle = "red";
+    this.ctx.fillRect(0, this.canvas.height * 0.9, this.canvas.width, this.canvas.height * .1);
+}
 
 Camera.prototype.render = function (player, map) {
     this.drawSky(player.direction, map.skybox, map.light);
@@ -309,8 +323,6 @@ document.getElementById('display').oncontextmenu = function (event) {
 };
 var startQuadrant = [1, 1];
 var display = document.getElementById('display');
-var bg = document.getElementById('background');
-var head = document.getElementById('head');
 var welcomeImage = new Bitmap('./images/welcome placeholder.png', 100, 100);
 var infoImage1 = new Bitmap('./images/welcome placeholder.png', 200, 200);
 var player = new Player(startQuadrant[0] + 0.5, startQuadrant[1] + 0.5, Math.PI * 0.1);
@@ -335,19 +347,6 @@ var endDisplayHelp = false;
 var showInfo = false;
 
 //map.randomize();
-display.ontouchstart = function (e) {
-    console.log('touch display');
-    e.preventDefault();
-};
-background.ontouchstart = function(e)
-{
-    console.log('touch bg');
-    e.preventDefault();
-};
-head.ontouchstart = function (e) {
-    console.log('touch head');
-    e.preventDefault();
-};
 
 
 loop.start(function frame(seconds) {
@@ -357,4 +356,5 @@ loop.start(function frame(seconds) {
     //console.log(endDisplayHelp);
     //if (!endDisplayHelp) camera.displayHelp(welcomeImage);
     if (showInfo) camera.displayHelp(infoImage1);
+    if (MOBILE) camera.showMobileControls();
 });
