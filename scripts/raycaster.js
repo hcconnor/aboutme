@@ -27,6 +27,8 @@ Controls.prototype.onTouchEnd = function (e) {
 
 
 
+
+
 Controls.prototype.onKey = function (val, e) {
     var state = this.codes[e.keyCode];
     if (typeof state === 'undefined') return;
@@ -163,7 +165,7 @@ function Camera(canvas, resolution, focalLength) {
     this.resolution = resolution;
     this.spacing = this.width / resolution;
     this.focalLength = focalLength || 0.8;
-    this.range = MOBILE ? 8 : 14;
+    this.range = MOBILE ? 14 : 14;
     this.lightRange = 10;
     this.scale = (this.width + this.height) / 1200;
 }
@@ -293,7 +295,12 @@ GameLoop.prototype.frame = function (time) {
     if (seconds < 0.2) this.callback(seconds);
     requestAnimationFrame(this.frame);
 };
-
+document.getElementById('display').oncontextmenu = function (event) {
+    event.preventDefault();
+    event.stopPropagation(); // not necessary in my case, could leave in case stopImmediateProp isn't available? 
+    event.stopImmediatePropagation();
+    return false;
+};
 var startQuadrant = [1, 1];
 var display = document.getElementById('display');
 var welcomeImage = new Bitmap('./images/welcome placeholder.png', 100, 100);
@@ -326,6 +333,6 @@ loop.start(function frame(seconds) {
     player.update(controls.states, map, seconds, camera);
     camera.render(player, map);
     //console.log(endDisplayHelp);
-    if (!endDisplayHelp) camera.displayHelp(welcomeImage);
+    //if (!endDisplayHelp) camera.displayHelp(welcomeImage);
     if (showInfo) camera.displayHelp(infoImage1);
 });
