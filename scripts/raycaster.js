@@ -4,16 +4,19 @@ var MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAge
 function Controls() {
     this.codes = { 37: 'left', 39: 'right', 38: 'forward', 40: 'backward', 32:'interact' };
     this.states = { 'left': false, 'right': false, 'forward': false, 'backward': false, 'interact' : false};
-    document.addEventListener('keydown', this.onKey.bind(this, true), false);
-    document.addEventListener('keyup', this.onKey.bind(this, false), false);
-    document.addEventListener('touchstart', this.onTouch.bind(this), false);
-    document.addEventListener('touchmove', this.onTouch.bind(this), false);
-    document.addEventListener('touchend', this.onTouchEnd.bind(this), false);
+    document.addEventListener('keydown', this.onKey.bind(this, true), { passive: false });
+    document.addEventListener('keyup', this.onKey.bind(this, false), { passive: false });
+    document.addEventListener('touchstart', this.onTouch.bind(this), { passive: false });
+    document.addEventListener('touchmove', this.onTouch.bind(this), { passive: false });
+    document.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: false });
 }
 
 Controls.prototype.onTouch = function (e) {
     var t = e.touches[0];
+
     this.onTouchEnd(e);
+    e.preventDefault();
+    e.stopPropagation();
     if (t.pageY < window.innerHeight * 0.5) this.onKey(true, { keyCode: 38 });
     else if (t.pageX < window.innerWidth * 0.5) this.onKey(true, { keyCode: 37 });
     else if (t.pageY > window.innerWidth * 0.5) this.onKey(true, { keyCode: 39 });
@@ -24,6 +27,9 @@ Controls.prototype.onTouchEnd = function (e) {
     e.preventDefault();
     e.stopPropagation();
 };
+
+
+
 
 
 
@@ -303,6 +309,8 @@ document.getElementById('display').oncontextmenu = function (event) {
 };
 var startQuadrant = [1, 1];
 var display = document.getElementById('display');
+var bg = document.getElementById('background');
+var head = document.getElementById('head');
 var welcomeImage = new Bitmap('./images/welcome placeholder.png', 100, 100);
 var infoImage1 = new Bitmap('./images/welcome placeholder.png', 200, 200);
 var player = new Player(startQuadrant[0] + 0.5, startQuadrant[1] + 0.5, Math.PI * 0.1);
@@ -327,6 +335,20 @@ var endDisplayHelp = false;
 var showInfo = false;
 
 //map.randomize();
+display.ontouchstart = function (e) {
+    console.log('touch display');
+    e.preventDefault();
+};
+background.ontouchstart = function(e)
+{
+    console.log('touch bg');
+    e.preventDefault();
+};
+head.ontouchstart = function (e) {
+    console.log('touch head');
+    e.preventDefault();
+};
+
 
 loop.start(function frame(seconds) {
     map.update(seconds);
