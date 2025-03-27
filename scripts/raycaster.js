@@ -30,13 +30,6 @@ Controls.prototype.onTouchEnd = function (e) {
     e.stopPropagation();
 };
 
-
-
-
-
-
-
-
 Controls.prototype.onKey = function (val, e) {
     var state = this.codes[e.keyCode];
     if (typeof state === 'undefined') return;
@@ -77,7 +70,7 @@ Player.prototype.update = function (controls, map, seconds) {
     if (controls.right) this.rotate(Math.PI * seconds);
     if (controls.forward) this.walk(3 * seconds, map);
     if (controls.backward) this.walk(-3 * seconds, map);
-    if (controls.interact) endDisplayHelp = true;
+    //if (controls.interact) endDisplayHelp = true;
 };
 
 function Map(map) {
@@ -185,14 +178,16 @@ Camera.prototype.displayHelp = function (image)
 Camera.prototype.showMobileControls = function()
 {
     console.log("showing Mobile Controls");
-    this.ctx.fillStyle = "green";
-    this.ctx.fillRect(0, this.canvas.height * 0.7, this.canvas.width, this.canvas.height * .1);
-    this.ctx.fillStyle = "yellow";
-    this.ctx.fillRect(0, this.canvas.height * 0.8, this.canvas.width *.5, this.canvas.height * .1);
-    this.ctx.fillStyle = "blue";
-    this.ctx.fillRect(this.canvas.width * .5, this.canvas.height * 0.8, this.canvas.width * .5, this.canvas.height * .1);
-    this.ctx.fillStyle = "red";
-    this.ctx.fillRect(0, this.canvas.height * 0.9, this.canvas.width, this.canvas.height * .1);
+    
+    this.ctx.drawImage(upButton.image, 0, this.canvas.height * 0.7, this.canvas.width, this.canvas.height * .1);
+    // if (controls.forward) 
+    //     {
+    //         this.ctx.fillStyle(rgba(18, 82, 18, 0.26))
+    //         this.ctx.fillRect(0, this.canvas.height * 0.7, this.canvas.width, this.canvas.height * .1)
+    //     }
+    this.ctx.drawImage(leftButton.image, 0, this.canvas.height * 0.8, this.canvas.width *.5, this.canvas.height * .1);
+    this.ctx.drawImage(rightButton.image, this.canvas.width * .5, this.canvas.height * 0.8, this.canvas.width * .5, this.canvas.height * .1);
+    this.ctx.drawImage(downButton.image,0, this.canvas.height * 0.9, this.canvas.width, this.canvas.height * .1);
 }
 
 Camera.prototype.render = function (player, map) {
@@ -265,16 +260,16 @@ Camera.prototype.drawColumn = function (column, ray, angle, map) {
             else if(wall.id == 2)
             {
                 ctx.drawImage(texture2.image, textureX, 0, 1, texture2.height, left, wall.top, width, wall.height);
-                if(step.distance <= .55)
-                {
-                    showInfo = true;
-                }
-                else {
-                    showInfo = false;
-                }
             }
-            
-
+            //console.log(s);
+            if(column == this.resolution * 0.5 && wall.id == 2 && step.distance <= 1)
+            {
+                showInfo = true;
+            }
+            else if (column == this.resolution * 0.5 && (step.distance >= 1 || wall.id != 2))
+            {
+                showInfo = false;
+            }
             ctx.fillStyle = '#000000';
             ctx.globalAlpha = Math.max((step.distance + step.shading) / this.lightRange - map.light, 0);
             ctx.fillRect(left, wall.top, width, wall.height);
@@ -321,20 +316,24 @@ document.getElementById('display').oncontextmenu = function (event) {
     event.stopImmediatePropagation();
     return false;
 };
-var startQuadrant = [1, 1];
+var startQuadrant = [6, 3];
 var display = document.getElementById('display');
 var welcomeImage = new Bitmap('./images/welcome placeholder.png', 100, 100);
 var infoImage1 = new Bitmap('./images/welcome placeholder.png', 200, 200);
+var upButton = new Bitmap('./images/Upbutton.png', 500, 100);
+var leftButton = new Bitmap('./images/LeftButton.png', 100, 100);
+var rightButton = new Bitmap('./images/RightButton.png', 100, 100);
+var downButton = new Bitmap('./images/DownButton.png', 500, 100);
 var player = new Player(startQuadrant[0] + 0.5, startQuadrant[1] + 0.5, Math.PI * 0.1);
 var mapGrid1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
