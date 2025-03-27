@@ -76,11 +76,15 @@ Player.prototype.update = function (controls, map, seconds) {
 function Map(map) {
     //this.size = size;
     this.wallGrid = map
-    
+    this.textureArray = [];
     //this.size = this.wallGrid.size;
     this.skybox = new Bitmap('./images/deathvalley_panorama.jpg', 2000, 750);
     this.wallTexture1 = new Bitmap('./images/wall_texture.jpg', 500, 1024);
     this.wallTexture2 = new Bitmap('./images/wall_texture2.jpg', 500, 1024);
+    this.windowtexture = new Bitmap('./images/window_texture.png', 500, 1024);
+    this.textureArray.push(this.wallTexture1);
+    this.textureArray.push(this.wallTexture2);
+    this.textureArray.push(this.windowtexture);
     this.light = 0;
 }
 
@@ -234,8 +238,6 @@ Camera.prototype.drawColumns = function (player, map) {
 
 Camera.prototype.drawColumn = function (column, ray, angle, map) {
     var ctx = this.ctx;
-    var texture1 = map.wallTexture1;
-    var texture2 = map.wallTexture2;
     var left = Math.floor(column * this.spacing);
     var width = Math.ceil(this.spacing);
     var hit = -1;
@@ -248,19 +250,24 @@ Camera.prototype.drawColumn = function (column, ray, angle, map) {
         // var rain = (rainDrops > 0) && this.project(0.1, angle, step.distance);
 
         if (s === hit) {
-            var textureX = Math.floor(texture1.width * step.offset);
+            
             var wall = this.project(step.height, angle, step.distance);
+            var textureX = Math.floor(map.textureArray[wall.id - 1].width * step.offset);
 
             ctx.globalAlpha = 1;
-            
-            if(wall.id == 1)
+            if(wall.id > 0)
             {
-                ctx.drawImage(texture1.image, textureX, 0, 1, texture1.height, left, wall.top, width, wall.height);
+                ctx.drawImage(map.textureArray[wall.id - 1].image, textureX, 0, 1, map.textureArray[wall.id - 1].height, left, wall.top, width, wall.height);
             }
-            else if(wall.id == 2)
-            {
-                ctx.drawImage(texture2.image, textureX, 0, 1, texture2.height, left, wall.top, width, wall.height);
-            }
+
+            // if(wall.id == 1)
+            // {
+            //     ctx.drawImage(texture1.image, textureX, 0, 1, texture1.height, left, wall.top, width, wall.height);
+            // }
+            // else if(wall.id == 2)
+            // {
+            //     ctx.drawImage(texture2.image, textureX, 0, 1, texture2.height, left, wall.top, width, wall.height);
+            // }
             //console.log(s);
             if(column == this.resolution * 0.5 && wall.id == 2 && step.distance <= 1)
             {
@@ -316,7 +323,7 @@ document.getElementById('display').oncontextmenu = function (event) {
     event.stopImmediatePropagation();
     return false;
 };
-var startQuadrant = [6, 3];
+var startQuadrant = [10, 3];
 var display = document.getElementById('display');
 var welcomeImage = new Bitmap('./images/welcome placeholder.png', 100, 100);
 var infoImage1 = new Bitmap('./images/welcome placeholder.png', 200, 200);
@@ -324,25 +331,29 @@ var upButton = new Bitmap('./images/Upbutton.png', 500, 100);
 var leftButton = new Bitmap('./images/LeftButton.png', 100, 100);
 var rightButton = new Bitmap('./images/RightButton.png', 100, 100);
 var downButton = new Bitmap('./images/DownButton.png', 500, 100);
-var player = new Player(startQuadrant[0] + 0.5, startQuadrant[1] + 0.5, Math.PI * 0.1);
+var player = new Player(startQuadrant[0] + 0.5, startQuadrant[1] + 0.5, Math.PI * 2.5);
 var mapGrid1 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    [0, 0, 0, 0, 0, 1, 1, 3, 3, 1, 1, 1, 3, 3, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 var map = new Map(mapGrid1);
 var controls = new Controls();
 var camera = new Camera(display, MOBILE ? 160 : 320, MOBILE ? 2 : .25);
 var loop = new GameLoop();
 var definedWallHeight = 1.25;
-var endDisplayHelp = false;
 var showInfo = false;
 
 //map.randomize();
